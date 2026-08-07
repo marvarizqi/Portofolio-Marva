@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marva Rizqi Anggarjati — Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --bg: #0D1922;
+  --bg-2: #101F2B;
+  --surface: #17293A;
+  --surface-2: #1E3247;
+  --border: rgba(224, 232, 240, 0.09);
+  --text: #EAF0F5;
+  --text-muted: #8FA1B3;
+  --text-faint: #5E7185;
+  --teal: #45BAAC;
+  --gold: #E4AC5C;
+  --periwinkle: #93A4EA;
+  --sage: #86AC7E;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter', sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+::selection{background:var(--teal);color:#0D1922;}
+
+a{color:inherit;}
+
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
+
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--teal);
+}
+
+h1,h2,h3{font-family:'Fraunces', serif;font-weight:600;letter-spacing:-0.01em;}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,25,34,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-name{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;}
+.nav-links{display:flex;gap:28px;list-style:none;font-size:0.88rem;color:var(--text-muted);}
+.nav-links a{text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+
+/* HERO */
+.hero{
+  position:relative;
+  padding:96px 0 80px;
+  overflow:hidden;
+}
+.hero .wrap{position:relative;z-index:2;}
+.hero h1{
+  font-size:clamp(2.4rem, 5vw, 4rem);
+  line-height:1.05;
+  margin:18px 0 22px;
+  max-width:760px;
+}
+.hero h1 em{font-style:italic;color:var(--teal);}
+.hero p.sub{
+  font-size:1.08rem;
+  color:var(--text-muted);
+  max-width:560px;
+  margin-bottom:34px;
+}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.8rem;
+  letter-spacing:0.03em;
+  padding:13px 22px;
+  border-radius:3px;
+  text-decoration:none;
+  transition:all .2s;
+  cursor:pointer;
+  border:1px solid transparent;
+  display:inline-block;
+}
+.btn-primary{background:var(--teal);color:#0D1922;font-weight:500;}
+.btn-primary:hover{background:#5CCABC;}
+.btn-ghost{border-color:var(--border);color:var(--text);}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal);}
+
+.hero-curves{
+  position:absolute;
+  right:-6%;
+  top:0;
+  width:62%;
+  height:100%;
+  opacity:0.9;
+  z-index:1;
+}
+.hero-curves path{
+  fill:none;
+  stroke-width:2;
+  stroke-dasharray:1400;
+  stroke-dashoffset:1400;
+  animation:draw 2.4s cubic-bezier(.65,0,.35,1) forwards;
+}
+.hero-curves path:nth-child(2){animation-delay:.15s;}
+.hero-curves path:nth-child(3){animation-delay:.3s;}
+.hero-curves path:nth-child(4){animation-delay:.45s;}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@media (prefers-reduced-motion: reduce){
+  .hero-curves path{animation:none;stroke-dashoffset:0;}
+}
+
+/* SECTION HEADERS */
+.section{padding:76px 0;border-top:1px solid var(--border);}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:10px;}
+.section-head h2{font-size:1.7rem;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:start;}
+.about p{color:var(--text-muted);margin-bottom:16px;max-width:52ch;}
+.stat-list{display:flex;flex-direction:column;gap:22px;}
+.stat{border-left:2px solid var(--teal);padding-left:16px;}
+.stat .num{font-family:'IBM Plex Mono',monospace;font-size:1.5rem;color:var(--text);}
+.stat .label{font-size:0.82rem;color:var(--text-faint);}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+
+/* PROJECTS */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+.chip{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.76rem;
+  padding:8px 15px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text-muted);
+  cursor:pointer;
+  transition:all .2s;
+}
+.chip:hover{border-color:var(--text-muted);color:var(--text);}
+.chip.active{background:var(--text);color:var(--bg);border-color:var(--text);}
+
+.project-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:760px){.project-grid{grid-template-columns:1fr;}}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:26px;
+  cursor:pointer;
+  transition:transform .25s, border-color .25s, background .25s;
+  border-top:2px solid transparent;
+}
+.card:hover{transform:translateY(-3px);background:var(--surface-2);}
+.card.open{background:var(--surface-2);}
+.card .cat-tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:3px 9px;
+  border-radius:3px;
+  display:inline-block;
+  margin-bottom:14px;
+}
+.card h3{font-size:1.18rem;margin-bottom:8px;line-height:1.3;}
+.card .meta{font-size:0.8rem;color:var(--text-faint);font-family:'IBM Plex Mono',monospace;margin-bottom:14px;}
+.card .desc{color:var(--text-muted);font-size:0.93rem;}
+.card .expand-hint{font-size:0.76rem;color:var(--text-faint);margin-top:16px;font-family:'IBM Plex Mono',monospace;}
+.card .details{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s ease;
+}
+.card.open .details{max-height:600px;margin-top:18px;padding-top:18px;border-top:1px solid var(--border);}
+.details h4{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:6px;margin-top:14px;}
+.details h4:first-child{margin-top:0;}
+.details p, .details ul{color:var(--text-muted);font-size:0.9rem;}
+.details ul{padding-left:18px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.tag{font-size:0.75rem;background:rgba(255,255,255,0.05);padding:3px 9px;border-radius:3px;color:var(--text-muted);}
+
+/* cat colors */
+.tag-quant{background:rgba(69,186,172,0.15);color:var(--teal);}
+.tag-quant-border{border-top-color:var(--teal);}
+.tag-fin{background:rgba(228,172,92,0.15);color:var(--gold);}
+.tag-fin-border{border-top-color:var(--gold);}
+.tag-risk{background:rgba(147,164,234,0.15);color:var(--periwinkle);}
+.tag-risk-border{border-top-color:var(--periwinkle);}
+.tag-dev{background:rgba(134,172,126,0.15);color:var(--sage);}
+.tag-dev-border{border-top-color:var(--sage);}
+
+/* SKILLS */
+.skill-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;}
+@media(max-width:760px){.skill-groups{grid-template-columns:1fr;}}
+.skill-group h4{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-faint);margin-bottom:14px;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.skill-tags span{
+  font-size:0.85rem;
+  border:1px solid var(--border);
+  padding:7px 13px;
+  border-radius:20px;
+  color:var(--text-muted);
+}
+
+/* EXPERIENCE */
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:grid;grid-template-columns:130px 1fr;gap:24px;padding:22px 0;border-top:1px solid var(--border);}
+.tl-item:first-child{border-top:none;}
+.tl-date{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--text-faint);}
+.tl-item h4{font-size:1.05rem;margin-bottom:4px;font-family:'Fraunces',serif;font-weight:600;}
+.tl-item .org{font-size:0.86rem;color:var(--teal);margin-bottom:8px;}
+.tl-item p{color:var(--text-muted);font-size:0.9rem;}
+
+/* FOOTER */
+footer{padding:76px 0 60px;}
+.contact-row{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;}
+footer h2{font-size:2rem;margin-bottom:14px;max-width:480px;}
+.contact-links{display:flex;flex-direction:column;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:0.88rem;}
+.contact-links a{text-decoration:none;color:var(--text-muted);transition:color .2s;}
+.contact-links a:hover{color:var(--teal);}
+.foot-note{margin-top:60px;font-size:0.78rem;color:var(--text-faint);border-top:1px solid var(--border);padding-top:20px;}
+
+@media(max-width:640px){
+  .wrap{padding:0 20px;}
+  .hero-curves{width:100%;opacity:0.35;}
+  .hero{padding:70px 0 60px;}
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="nav-name">Marva Rizqi A.</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="hero-curves" viewBox="0 0 500 500" preserveAspectRatio="xMidYMid meet">
+    <path d="M 20 120 Q 100 100, 150 180 T 280 220 T 400 160 T 480 260" stroke="#45BAAC"/>
+    <path d="M 10 250 Q 90 320, 160 280 T 300 340 T 420 300 T 490 380" stroke="#E4AC5C"/>
+    <path d="M 30 380 Q 120 360, 200 420 T 340 400 T 470 440" stroke="#93A4EA"/>
+    <path d="M 0 60 Q 80 180, 180 100 T 320 140 T 460 90" stroke="#86AC7E"/>
+  </svg>
+  <div class="wrap">
+    <span class="eyebrow">Actuarial Science, ITS — Class of 2026</span>
+    <h1>Reading the patterns behind <em>numbers, risk,</em> and decisions.</h1>
+    <p class="sub">Actuarial Science graduate who turns raw data — from stock prices to court divorce records — into models and insights people can actually act on.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="about">
+      <span class="eyebrow">About</span>
+      <h2 style="margin:12px 0 20px;">A short background</h2>
+      <p>I hold a Bachelor's degree in Actuarial Science from Institut Teknologi Sepuluh Nopember (ITS), with experience building statistical and machine learning models to understand risk — from insurance investment risk and banking financial risk to social risk such as divorce.</p>
+      <p>Beyond the quantitative side, I've gained hands-on work experience through internships at the Financial Services Authority of Indonesia (OJK) in consumer education & protection, and at Seven Retail Group in payroll & HR administration — both of which sharpened my accuracy in handling large volumes of data.</p>
+      <p>This portfolio brings together six projects that showcase my skills in quantitative analytics, risk & financial analysis, and lightweight application development.</p>
+    </div>
+    <div class="stat-list">
+      <div class="stat"><div class="num">3.26 / 4.00</div><div class="label">GPA — Actuarial Science, ITS</div></div>
+      <div class="stat"><div class="num">6</div><div class="label">Research & quantitative analysis projects</div></div>
+      <div class="stat"><div class="num">2</div><div class="label">Internships (OJK & Seven Retail Group)</div></div>
+      <div class="stat"><div class="num">PAI</div><div class="label">TA1 Certification — Statistical Methods</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="eyebrow">6 case studies</span>
+    </div>
+
+    <div class="filters">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="quant">Quant & ML</button>
+      <button class="chip" data-filter="fin">Financial Analysis</button>
+      <button class="chip" data-filter="risk">Risk & Actuarial</button>
+      <button class="chip" data-filter="dev">Software Dev</button>
+    </div>
+
+    <div class="project-grid">
+
+      <div class="card tag-quant-border" data-cat="quant">
+        <span class="cat-tag tag-quant">Quant & ML</span>
+        <h3>IDX30 Stock Portfolio Optimization with Machine Learning & Risk Parity</h3>
+        <div class="meta">Undergraduate Thesis · 2026</div>
+        <p class="desc">Forecasting the daily returns of 21 IDX30 stocks using Bi-LSTM, then allocating optimal portfolio weights with Black-Litterman and Hierarchical Risk Parity.</p>
+        <div class="expand-hint">+ Click for method & results</div>
+        <div class="details">
+          <h4>Method</h4>
+          <p>A Bidirectional LSTM model forecasts daily returns; the predictions feed into a Black-Litterman framework to generate adaptive posterior expected returns, and portfolio weights are then optimized using the Hierarchical Risk Parity (HRP) algorithm.</p>
+          <h4>Results</h4>
+          <ul>
+            <li>Average prediction Mean Squared Error (MSE): 0.0017</li>
+            <li>Out-of-sample Cumulative Return: 13.18%</li>
+            <li>Sharpe Ratio 0.8966, Calmar Ratio 2.7414</li>
+            <li>Outperformed the traditional historical covariance approach</li>
+          </ul>
+          <h4>Tools</h4>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">PyPortfolioOpt</span><span class="tag">Google Colab</span><span class="tag">Bi-LSTM</span></div>
+        </div>
+      </div>
+
+      <div class="card tag-risk-border" data-cat="risk">
+        <span class="cat-tag tag-risk">Risk & Actuarial</span>
+        <h3>Survival Analysis of Sidoarjo Divorce Data (Cox Proportional Hazard)</h3>
+        <div class="meta">Research Report · 2024</div>
+        <p class="desc">Modeling the risk and survival probability of marriages using religious court data from Sidoarjo (2019–2023, 120 cases) to understand the drivers of divorce.</p>
+        <div class="expand-hint">+ Click for method & results</div>
+        <div class="details">
+          <h4>Method</h4>
+          <p>Court data preprocessing, survival curve estimation with Kaplan-Meier and Log-Rank tests across groups, and Parametric Survival modeling (Weibull distribution) alongside Cox Proportional Hazard. When the proportional hazard assumption was violated, it was addressed with Time-Dependent Covariates and a Stratified Cox Model.</p>
+          <h4>Results</h4>
+          <ul>
+            <li>Number of children was shown to significantly affect divorce risk (Log-Rank test, p &lt; 0.005)</li>
+            <li>Couples without children showed the fastest decline in marriage "survival" probability</li>
+            <li>Type of divorce filing and occupation also shaped distinct risk patterns across groups</li>
+          </ul>
+          <h4>Tools</h4>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">RStudio</span><span class="tag">Kaplan-Meier</span><span class="tag">Cox PH</span></div>
+        </div>
+      </div>
+
+      <div class="card tag-fin-border" data-cat="fin">
+        <span class="cat-tag tag-fin">Financial Analysis</span>
+        <h3>Financial Statement Analysis & Stock Forecasting of Bank Syariah Indonesia (BSI)</h3>
+        <div class="meta">Case Study · 2024</div>
+        <p class="desc">A comprehensive fundamental, technical, governance, risk, and ESG analysis to assess the long-term investment case for BSI stock.</p>
+        <div class="expand-hint">+ Click for method & results</div>
+        <div class="details">
+          <h4>Method</h4>
+          <p>Financial ratio analysis (profitability, liquidity, solvency, activity, market ratios), technical analysis using MACD & RSI, stock price forecasting with ARIMA(1,1,1) and Prophet (validated with Ljung-Box & White Noise tests), and an evaluation of Good Corporate Governance and the ESG framework.</p>
+          <h4>Results</h4>
+          <ul>
+            <li>Strong fundamentals with improving profitability</li>
+            <li>ARIMA & Prophet models projected a stable upward price trend through 2026</li>
+            <li>Governance and ESG practices support BSI as a long-term investment choice</li>
+          </ul>
+          <h4>Tools</h4>
+          <div class="tag-row"><span class="tag">ARIMA</span><span class="tag">Prophet</span><span class="tag">Excel</span><span class="tag">Equity Research</span></div>
+        </div>
+      </div>
+
+      <div class="card tag-risk-border" data-cat="risk">
+        <span class="cat-tag tag-risk">Risk & Actuarial</span>
+        <h3>Market Risk Analysis of the Indonesian Life Insurance Industry</h3>
+        <div class="meta">Internship — OJK · 2025</div>
+        <p class="desc">Analyzing the macroeconomic factors driving Indonesian life insurance industry investment returns from 2019–2024, to support market risk oversight by the regulator.</p>
+        <div class="expand-hint">+ Click for method & results</div>
+        <div class="details">
+          <h4>Method</h4>
+          <p>Data transformation, exploratory data analysis, correlation analysis, multiple linear regression, multicollinearity testing, and backward elimination on variables including investment return, inflation, BI rate, IHSG, and government bond yield.</p>
+          <h4>Results</h4>
+          <p>Identified the macroeconomic variables that significantly affect life insurance industry investment returns, providing data-driven insight for OJK's market risk oversight policy.</p>
+          <h4>Tools</h4>
+          <div class="tag-row"><span class="tag">Multiple Linear Regression</span><span class="tag">Excel</span><span class="tag">Data Visualization</span></div>
+        </div>
+      </div>
+
+      <div class="card tag-quant-border" data-cat="quant">
+        <span class="cat-tag tag-quant">Quant & ML</span>
+        <h3>Microsoft Stock Price Forecasting with Neural Networks</h3>
+        <div class="meta">Model Comparison Study · 2024</div>
+        <p class="desc">Comparing the performance of a Feed Forward Neural Network (FFNN) and a Radial Basis Function Network (RBFN) in predicting Microsoft's closing stock price.</p>
+        <div class="expand-hint">+ Click for method & results</div>
+        <div class="details">
+          <h4>Method</h4>
+          <p>Preprocessing MSFT closing price data (502 observations) with ACF & PACF analysis and standardization, then training and comparing two neural network architectures using RMSE, MAE, and MAPE metrics.</p>
+          <h4>Results</h4>
+          <p>The RBFN model delivered slightly better prediction performance than the FFNN based on RMSE.</p>
+          <h4>Tools</h4>
+          <div class="tag-row"><span class="tag">R</span><span class="tag">FFNN</span><span class="tag">RBFN</span><span class="tag">Time Series</span></div>
+        </div>
+      </div>
+
+      <div class="card tag-dev-border" data-cat="dev">
+        <span class="cat-tag tag-dev">Software Dev</span>
+        <h3>Interactive Tic Tac Toe Game Built with Excel VBA</h3>
+        <div class="meta">Programming Project</div>
+        <p class="desc">Built a full Tic Tac Toe game with a GUI inside Excel using VBA — demonstrating programming logic skills outside the usual data-analysis context.</p>
+        <div class="expand-hint">+ Click for feature details</div>
+        <div class="details">
+          <h4>Features</h4>
+          <ul>
+            <li>UserForm interface with player name input</li>
+            <li>Two board modes: 3×3 and 4×4</li>
+            <li>Automatic win & draw detection, scoreboard, and game reset</li>
+          </ul>
+          <h4>Tools</h4>
+          <div class="tag-row"><span class="tag">VBA</span><span class="tag">Excel Macro</span><span class="tag">Event-driven Programming</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <span class="eyebrow">Tools & competencies</span>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h4>Quantitative & Machine Learning</h4>
+        <div class="skill-tags">
+          <span>Python</span><span>R</span><span>Neural Networks</span><span>Time Series (ARIMA, Prophet)</span><span>Survival Analysis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Financial & Risk Analysis</h4>
+        <div class="skill-tags">
+          <span>Financial Statement Analysis</span><span>Technical Analysis</span><span>Market Risk Analysis</span><span>ESG & GCG Evaluation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Statistical Methods</h4>
+        <div class="skill-tags">
+          <span>Regression Analysis</span><span>Multicollinearity Test</span><span>Log-Rank Test</span><span>Hypothesis Testing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools & Other</h4>
+        <div class="skill-tags">
+          <span>Advanced Excel</span><span>VBA / Macro</span><span>Google Colab</span><span>RStudio</span><span>Report Writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span class="eyebrow">Internships & organizations</span>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">May — Aug 2026</div>
+        <div>
+          <h4>Intern — Payroll</h4>
+          <div class="org">Seven Retail Group, South Jakarta</div>
+          <p>Processed monthly incentives for 2,000+ employees and maintained data integrity across 2,500+ records using advanced Excel, while handling BPJS administration and the Mekari HRIS platform.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul — Aug 2025</div>
+        <div>
+          <h4>Intern — Education & Consumer Protection</h4>
+          <div class="org">Financial Services Authority (OJK), Cirebon</div>
+          <p>Supported regional financial literacy programs and maintained audit trail documentation for compliance purposes.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Feb 2024 — Jan 2025</div>
+        <div>
+          <h4>Event Staff & 1st Vice Project Officer, JEJAK</h4>
+          <div class="org">Actuarial Science Student Association, ITS</div>
+          <p>Managed timelines, task distribution, and committee coordination for the JEJAK program.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-row">
+      <h2>Interested in connecting?</h2>
+      <div class="contact-links">
+        <a href="mailto:marvarizqi@gmail.com">marvarizqi@gmail.com</a>
+        <a href="tel:+6285722608624">+62 857-2260-8624</a>
+        <a href="https://linkedin.com/in/marva-rizqi-anggarjati" target="_blank" rel="noopener">linkedin.com/in/marva-rizqi-anggarjati</a>
+        <span style="color:var(--text-faint)">South Jakarta, Indonesia</span>
+      </div>
+    </div>
+    <div class="foot-note">Marva Rizqi Anggarjati — Actuarial Science, Institut Teknologi Sepuluh Nopember</div>
+  </div>
+</footer>
+
+<script>
+const chips = document.querySelectorAll('.chip');
+const cards = document.querySelectorAll('.card');
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const filter = chip.dataset.filter;
+    cards.forEach(card => {
+      const show = filter === 'all' || card.dataset.cat === filter;
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('open');
+  });
+});
+</script>
+
+</body>
+</html>
